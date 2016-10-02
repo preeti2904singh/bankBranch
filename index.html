@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="" ng-app="bankBranch">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Title Page</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container" ng-controller="ServicesCtrl">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Select the city to get Bank Details near you.</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<select name="" class="form-control" ng-model="city" ng-change="onChange(e)" id="city">
+							<option value="DELHI">DELHI</option>
+							<option value="BANGALORE">BANGALORE</option>
+							<option value="GOA">GOA</option>
+							<option value="KOLKATA">KOLKATA</option>
+							<option value="PUNJAB">PUNJAB</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<input type="search" name="" ng-model="bankName" 
+					   uib-typeahead='bank.bank_name for bank in getdata()'
+					   id="input" class="form-control" value="" 
+					   placeholder="Search by bank name" ng-change="onChange(e)" required="required" title=""/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="service">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>IFSC</th>
+									<th>BANK ID</th>
+									<th>BANK NAME</th>
+									<th>BRANCH</th>
+									<th>ADDRESS</th>
+									<th>CITY</th>
+									<th>DISTRICT</th>
+									<th>STATE</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="service in services | filter: bankName">
+									<td>{{service.ifsc}}</td>
+									<td>{{service.bank_id}}</td>
+									<td>{{service.bank_name}}</td>
+									<td>{{service.branch}}</td>
+									<td>{{service.address}}</td>
+									<td>{{service.city}}</td>
+									<td>{{service.district}}</td>
+									<td>{{service.state}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- jQuery -->
+		<script src="//code.jquery.com/jquery.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+      	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-route.min.js
+      "></script>
+      	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.4/ui-bootstrap-tpls.js"></script>
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+ 		<script src="app.js"></script>
+	</body>
+</html>
